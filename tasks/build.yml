@@ -1,0 +1,14 @@
+---
+
+- name: "[geos] execute script"
+  command: "sh {{tiger_data_directory}}/nation.sh chdir={{tiger_data_directory}}"
+  sudo_user: root
+  sudo: yes
+
+
+- name: "[geos] execute script"
+  command: "sh {{tiger_data_directory}}/{{item}}.sh chdir={{tiger_data_directory}} &"
+  sudo_user: root
+  sudo: yes
+  with_items:
+    - "{{tiger_geos}}"

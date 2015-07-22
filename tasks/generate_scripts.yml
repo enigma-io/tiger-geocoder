@@ -1,0 +1,41 @@
+---
+- name: output the pre-written scripts for tiger builds to a file (nation_script)
+  command: psql -At -d {{tiger_pg_db_name}} -U {{tiger_pg_user}} -o {{tiger_data_directory}}/nation.sh -c "SELECT loader_generate_nation_script('sh');"
+  sudo: yes
+  sudo_user: "{{tiger_pg_user}}"
+
+- name: output the pre-written scripts for tiger builds to a file (state scripts)
+  command: psql -At -d {{tiger_pg_db_name}} -U {{tiger_pg_user}} -o {{tiger_data_directory}}/{{item}}.sh -c "SELECT loader_generate_script(ARRAY['{{item}}'], 'sh');"
+  sudo: yes
+  sudo_user: "{{tiger_pg_user}}"
+  with_items: 
+    - "{{tiger_geos}}"
+
+- name: regex out 'pgsql-9.0/'
+  replace: dest={{tiger_data_directory}}/{{item}}.sh regexp='pgsql-9.0\/' replace=''
+  sudo: yes
+  with_items:
+    - "{{tiger_geos}}"
+    - nation
+
+
+- name: regex 2013/2014
+  replace: dest={{tiger_data_directory}}/{{item}}.sh regexp='2013' replace='{{tiger_year}}'
+  sudo: yes
+  with_items:
+    - "{{tiger_geos}}"
+    - nation
+
+- name: regex for database name
+  replace: dest={{tiger_data_directory}}/{{item}}.sh regexp='geocoder' replace='{{tiger_pg_db_name}}'
+  sudo: yes
+  with_items:
+    - "{{tiger_geos}}"
+    - nation
+
+- name: regex out password (these files will be deleted at end of ansible run!)
+  replace: dest={{tiger_data_directory}}/{{item}}.sh regexp='PGPASSWORD=yourpasswordhere' replace=PGPASSWORD={{tiger_pg_password}}
+  sudo: yes
+  with_items:
+    - "{{tiger_geos}}"
+    - nation

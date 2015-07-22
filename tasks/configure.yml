@@ -1,0 +1,16 @@
+---
+
+- name: install extension fuzzystrmatch
+  command: "psql -d {{tiger_pg_db_name}} -U postgres -c 'CREATE EXTENSION IF NOT EXISTS fuzzystrmatch'"
+  sudo: yes
+  sudo_user: postgres
+
+- name: install extension postgis_tiger_geocoder
+  command: "psql -d {{tiger_pg_db_name}} -U postgres -c 'CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder'"
+  sudo: yes
+  sudo_user: postgres
+
+- name: alter password
+  command: psql -d {{tiger_pg_db_name}} -U postgres -c "ALTER ROLE postgres PASSWORD '{{tiger_pg_password}}'"
+  sudo: yes
+  sudo_user: postgres

@@ -1,0 +1,17 @@
+# file: postgresql/meta/main.yml
+
+galaxy_info:
+  author: jeremy krinsley
+  company: enigma
+  description: "Install and configure default Tiger Postgis geocoder."
+  min_ansible_version: 1.7.2
+  license: MIT
+  platforms:
+  - name: Ubuntu 
+    versions:
+    - 14.04
+  categories:
+  - database
+  - database:sql
+
+dependencies: []

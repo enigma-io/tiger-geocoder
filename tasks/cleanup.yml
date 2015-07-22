@@ -1,0 +1,22 @@
+---
+
+- name: "install missing indexes. see: http://postgis.net/docs/Install_Missing_Indexes.html"
+  command: psql -h {{tiger_pg_host}} -d {{tiger_pg_db_name}} -U {{tiger_pg_user}} -c "SELECT install_missing_indexes();"
+  environment: 
+    PGPASSWORD: "{{tiger_pg_password}}"
+
+- name: remove downloaded data directories
+  file: "path={{tiger_data_directory}}/{{item}} state=absent"
+  sudo: yes
+  sudo_user: root
+  with_items:
+    - ftp2.census.gov
+    - temp
+
+- name: remove shell scripts
+  file: "path={{tiger_data_directory}}/{{item}}.sh state=absent"
+  sudo: yes
+  sudo_user: root
+  with_items:
+    - nation
+    - "{{tiger_geos}}"

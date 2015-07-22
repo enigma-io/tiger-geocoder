@@ -1,0 +1,69 @@
+tiger_pg_conf_file: /etc/postgresql/9.3/main/postgresql.conf 
+tiger_mount_point: /gisdata
+tiger_data_directory: /gisdata
+tiger_pg_data_directory: /gisdata/pg
+tiger_pg_password: "{{ lookup('env', 'TIGER_DB_PASSWORD') }}"
+tiger_pg_host: localhost
+tiger_pg_user: postgres
+tiger_pg_db_name: geocoder
+tiger_year: 2014
+tiger_geos:
+    - AK
+    - AL
+    - AR
+    - AS
+    - AZ
+    - CA
+    - CO
+    - CT
+    - DC
+    - DE
+    - FM
+    - FL
+    - GA
+    - GU
+    - HI
+    - IA
+    - ID
+    - IL
+    - IN
+    - KS
+    - KY
+    - LA
+    - MA
+    - MD
+    - ME
+    - MH
+    - MI
+    - MN
+    - MO
+    - MP
+    - MS
+    - MT
+    - NC
+    - ND
+    - NE
+    - NH
+    - NJ
+    - NM
+    - NV
+    - NY
+    - OH
+    - OK
+    - OR
+    - PA
+    - PR
+    - PW
+    - RI
+    - SC
+    - SD
+    - TN
+    - TX
+    - UT
+    - VA
+    - VI
+    - VT
+    - WA
+    - WI
+    - WV
+    - WY
