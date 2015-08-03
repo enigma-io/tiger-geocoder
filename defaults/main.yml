@@ -6,7 +6,7 @@ tiger_pg_password: "{{ lookup('env', 'TIGER_DB_PASSWORD') }}"
 tiger_pg_host: localhost
 tiger_pg_user: postgres
 tiger_pg_db_name: geocoder
-tiger_year: 2014
+tiger_year: 2013
 tiger_geos:
     - AK
     - AL
