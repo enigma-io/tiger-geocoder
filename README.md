@@ -8,7 +8,7 @@ An Ansible role to configure a PostgreSQL instance with the TIGER Geocoder exten
 * Ubuntu 14.04
 * Postgres 9.3.6
 * PostGIS 2.1
-* postgis_tiger_geocoder extension for years 2013 and 2014
+* postgis_tiger_geocoder extension for year 2013
 
 ## Features
 
